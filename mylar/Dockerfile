@@ -43,4 +43,4 @@ VOLUME ["/config","/data"]
 
 # Final setup
 EXPOSE 8090 
-ENTRYPOINT ["/usr/bin/python", "/opt/mylar/Mylar.py", "--quiet", "--nolaunch", "--datadir=/config/", "--config=/config/mylar/mylar.ini"]
+ENTRYPOINT ["/usr/bin/python", "/opt/mylar/Mylar.py", "--quiet", "--nolaunch", "--datadir=/config/", "--config=/config/mylar.ini"]
