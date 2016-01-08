@@ -43,13 +43,13 @@ RUN add-apt-repository -y ppa:mc3man/trusty-media && apt-get -q update && \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /tmp/*
 
+# Set up needed scripts
+COPY ["supervisord.conf", "/etc/supervisor/conf.d/supervisord.conf"]
+RUN mkdir -p /var/log/supervisor
+
 # Declare volumes needed
 VOLUME ["/config","/data"]
 
 # Final setup
 EXPOSE 5050 8080 8081 8085 8181 7000
-CMD ["/usr/bin/supervisord"]
-
-# Set up needed scripts
-COPY ["supervisord.conf", "/etc/supervisor/conf.d/supervisord.conf"]
-RUN mkdir -p /var/log/supervisor
+ENTRYPOINT ["/usr/bin/supervisord"]

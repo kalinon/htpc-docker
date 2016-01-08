@@ -22,6 +22,10 @@ RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
+# Set up supervisor
+RUN mkdir -p /var/log/supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 VOLUME ["/config","/data"]
 
 # Torrent port
@@ -32,8 +36,4 @@ EXPOSE 8112
 # Daemon
 EXPOSE 58846
 
-CMD ["/usr/bin/supervisord"]
-
-# Set up supervisor
-RUN mkdir -p /var/log/supervisor
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ENTRYPOINT ["/usr/bin/supervisord"]
