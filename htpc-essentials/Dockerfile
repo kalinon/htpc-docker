@@ -19,6 +19,22 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu trusty multiverse" >> /etc/apt/so
       procps bzip2 libgnutlsxx27 libogg0 libjpeg8 libpng12-0 \
       libvpx1 libtheora0 libxvidcore4 libmpeg2-4 \
       libvorbis0a libfaad2 libmp3lame0 libmpg123-0 libmad0 libopus0 libvo-aacenc0
+      # pillow required libs
+      libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
+
+# Install unrar
+RUN curl http://www.rarlab.com/rar/unrarsrc-5.2.6.tar.gz -G -o /root/unrarsrc-5.2.6.tar.gz && \
+  tar xzf /root/unrarsrc-5.2.6.tar.gz -C /root/ 
+
+WORKDIR /root/unrar
+RUN make lib && make install-lib
+WORKDIR /
+RUN rm -r /root/unrar*
+ENV UNRAR_LIB_PATH /usr/lib/libunrar.so
+
+# Install PIP libs
+RUN pip install -U pip setuptools certifi && \
+  pip install pillow configparser beautifulsoup4 unrar natsort PyPDF2
 
 # install Sabnzbd++
 RUN add-apt-repository -y ppa:jcfp/ppa && apt-get -q update && \
@@ -30,6 +46,7 @@ RUN git clone https://github.com/midgetspy/Sick-Beard.git /opt/sickbeard && \
  git clone https://github.com/RuudBurger/CouchPotatoServer.git /opt/couchpotato && \
  git clone https://github.com/gugahoi/maraschino.git /opt/maraschino && \
  git clone https://github.com/rembo10/headphones.git /opt/headphones
+ git clone https://github.com/Kalinon/mylar.git /opt/mylar
 
 # Cleanup
 RUN add-apt-repository -y ppa:mc3man/trusty-media && apt-get -q update && \
@@ -39,6 +56,7 @@ RUN add-apt-repository -y ppa:mc3man/trusty-media && apt-get -q update && \
     libvpx-dev libtheora-dev libxvidcore-dev libmpeg2-4-dev libssl-dev \
     libvorbis-dev libfaad-dev libmp3lame-dev libmpg123-dev libmad0-dev \
     libopus-dev libvo-aacenc-dev build-essential python-dev && \
+  apt-get autoremove -y && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /tmp/*
@@ -48,8 +66,8 @@ COPY ["supervisord.conf", "/etc/supervisor/conf.d/supervisord.conf"]
 RUN mkdir -p /var/log/supervisor
 
 # Declare volumes needed
-VOLUME ["/config","/data"]
+VOLUME ["/config","/data","/opt/mylar/cache"]
 
 # Final setup
-EXPOSE 5050 8080 8081 8085 8181 7000
+EXPOSE 5050 8080 8081 8085 8181 8090 7000
 ENTRYPOINT ["/usr/bin/supervisord"]

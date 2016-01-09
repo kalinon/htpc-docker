@@ -19,7 +19,7 @@ RUN curl http://www.rarlab.com/rar/unrarsrc-5.2.6.tar.gz -G -o /root/unrarsrc-5.
   tar xzf /root/unrarsrc-5.2.6.tar.gz -C /root/ 
 
 WORKDIR /root/unrar
-RUN make lib && make install-lib
+RUN make && make install && make lib && make install-lib
 WORKDIR /
 RUN rm -r /root/unrar*
 ENV UNRAR_LIB_PATH /usr/lib/libunrar.so
@@ -39,7 +39,7 @@ RUN apt-get purge -y --auto-remove curl gcc build-essential python-dev && \
 RUN git clone https://github.com/Kalinon/mylar.git /opt/mylar
 
 # Declare volumes needed
-VOLUME ["/config","/data"]
+VOLUME ["/config","/data","/opt/mylar/cache"]
 
 # Final setup
 EXPOSE 8090 
