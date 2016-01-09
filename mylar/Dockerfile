@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND="noninteractive" \
 RUN echo "deb http://archive.ubuntu.com/ubuntu trusty multiverse" >> /etc/apt/sources.list && \
   apt-get -q update && \
   apt-get -qy --force-yes dist-upgrade && \
-  apt-get install -qy git curl python-pip python-dev build-essential \
+  apt-get install -qy git curl python-pip python-dev build-essential python-imaging \
   # pillow required libs
   libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
 

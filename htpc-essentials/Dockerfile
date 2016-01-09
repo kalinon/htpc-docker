@@ -14,7 +14,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu trusty multiverse" >> /etc/apt/so
       # Base apps
       git curl supervisor ca-certificates \
       # Python libs
-      python-software-properties software-properties-common python-pip python-dev build-essential \
+      python-software-properties software-properties-common python-pip python-dev build-essential python-imaging \
       # Headphones ffmpeg req
       procps bzip2 libgnutlsxx27 libogg0 libjpeg8 libpng12-0 \
       libvpx1 libtheora0 libxvidcore4 libmpeg2-4 \
