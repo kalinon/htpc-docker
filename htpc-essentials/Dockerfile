@@ -18,7 +18,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu trusty multiverse" >> /etc/apt/so
       # Headphones ffmpeg req
       procps bzip2 libgnutlsxx27 libogg0 libjpeg8 libpng12-0 \
       libvpx1 libtheora0 libxvidcore4 libmpeg2-4 \
-      libvorbis0a libfaad2 libmp3lame0 libmpg123-0 libmad0 libopus0 libvo-aacenc0
+      libvorbis0a libfaad2 libmp3lame0 libmpg123-0 libmad0 libopus0 libvo-aacenc0 \
       # pillow required libs
       libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
 
@@ -45,7 +45,7 @@ RUN add-apt-repository -y ppa:jcfp/ppa && apt-get -q update && \
 RUN git clone https://github.com/midgetspy/Sick-Beard.git /opt/sickbeard && \
  git clone https://github.com/RuudBurger/CouchPotatoServer.git /opt/couchpotato && \
  git clone https://github.com/gugahoi/maraschino.git /opt/maraschino && \
- git clone https://github.com/rembo10/headphones.git /opt/headphones
+ git clone https://github.com/rembo10/headphones.git /opt/headphones && \
  git clone https://github.com/Kalinon/mylar.git /opt/mylar
 
 # Cleanup
