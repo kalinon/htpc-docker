@@ -34,7 +34,8 @@ ENV UNRAR_LIB_PATH /usr/lib/libunrar.so
 
 # Install PIP libs
 RUN pip install -U pip setuptools certifi && \
-  pip install pillow configparser beautifulsoup4 unrar natsort PyPDF2
+  pip install pillow configparser beautifulsoup4 unrar natsort PyPDF2 \
+    pyopenssl ndg-httpsclient pyasn1
 
 # install Sabnzbd++
 RUN add-apt-repository -y ppa:jcfp/ppa && apt-get -q update && \
