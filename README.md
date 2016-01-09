@@ -8,4 +8,4 @@ docker run -d --name deluge -p 53160:53160 -p 8112:8112 -p 58846:58846 -v /root/
 docker run -d --name comicstreamer -p 32500:32500 -v /root/config/comicstreamer:/config -v /data:/data kalinon/comicstreamer  
 
 # Container command for mylar
-docker run -d --name mylar -p 8090:8090 -v /root/config/mylar:/config -v /data:/data kalinon/mylar  
+docker run -d --name mylar -p 8090:8090 -v /root/config:/config -v /data:/data kalinon/mylar  
