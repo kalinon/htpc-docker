@@ -38,4 +38,5 @@ RUN apt-get purge -y --auto-remove curl gcc build-essential python-dev && \
 RUN git clone https://github.com/Kalinon/comictagger.git /opt/comictagger
 
 VOLUME ["/comics"]
-ENTRYPOINT ["/opt/comictagger/comictagger.py"]
+WORKDIR "/opt/comictagger/"
+ENTRYPOINT ["/bin/bash"]
