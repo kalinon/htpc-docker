@@ -9,3 +9,4 @@ docker run -d --name comicstreamer -p 32500:32500 -v /root/config/comicstreamer:
 
 # Container command for mylar
 docker run -d --name mylar -p 8090:8090 -v /root/config:/config -v /data:/data -v /root/config/mylar/cache:/opt/mylar/cache kalinon/mylar
+
