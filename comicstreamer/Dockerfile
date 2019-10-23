@@ -42,4 +42,4 @@ VOLUME ["/config", "/data"]
 
 # Final setup
 EXPOSE 32500
-CMD ["/opt/comicstreamer/bin/python3", "/opt/comicstreamer/comicstreamer", "--quiet", "--nobrowser", "--user-dir=/config"]
+CMD ["/opt/comicstreamer/bin/python3", "/opt/comicstreamer/comicstreamer", "--verbose", "--nobrowser", "--user-dir=/config"]
